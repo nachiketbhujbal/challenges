@@ -10,7 +10,7 @@ two terms. By starting with 1 and 2, the first 10 terms will be:
 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 
 By considering the terms in the Fibonacci sequence whose values do not exceed
-N, find the sum of the even-valued terms.
+4,000,000, find the sum of the even-valued terms.
 
 '''
 import sys
@@ -25,19 +25,27 @@ def fibonacci(N):
 
     return result
 
-
-def main():
-    n = int(input('Enter an upper bound: ').strip())
+def sum_evenfibs_bymod(N):
     t0 = time.time()
-    modsum = sum([x for x in fibonacci(n) if x % 2 == 0])
+    modsum = sum([x for x in fibonacci(N) if x % 2 == 0])
     t1 = time.time()
     tms = round(1000000 * (t1 - t0), 5)
     print('Result: {} Time for mod div summation: {} us'.format(modsum, tms))
+
+def sum_evenfibs_bitwise(N):
+    t0 = time.time()
+    bitsum = sum([x for x in fibonacci(N) if x & 1 == 0])
     t1 = time.time()
-    bitsum = sum([x for x in fibonacci(n) if x & 1 == 0])
-    t2 = time.time()
-    tms = round(1000000 * (t2 - t1), 5)
-    print('Result: {} Time for bitwise summation: {} us'.format(modsum, tms))
+    tbw = round(1000000 * (t1 - t0), 5)
+    print('Result: {} Time for bitwise summation: {} us'.format(bitsum, tbw))
+
+def main():
+    if len(sys.argv) > 1:
+        n = int(sys.argv[1])
+    else:
+        n = int(input('Enter an upper bound: ').strip())
+    sum_evenfibs_bymod(N=n)
+    sum_evenfibs_bitwise(N=n)
 
 
 if __name__ == '__main__':

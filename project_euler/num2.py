@@ -14,6 +14,7 @@ N, find the sum of the even-valued terms.
 
 '''
 import sys
+import time
 
 def fibonacci(N):
     result = [1, 2]
@@ -24,11 +25,20 @@ def fibonacci(N):
 
     return result
 
+
 def main():
-    t = int(input().strip())
-    for a0 in range(t):
-        n = int(input().strip())
-        print(sum([x for x in fibonacci(n) if x % 2 == 0]))
+    n = int(input('Enter an upper bound: ').strip())
+    t0 = time.time()
+    modsum = sum([x for x in fibonacci(n) if x % 2 == 0])
+    t1 = time.time()
+    tms = round(1000000 * (t1 - t0), 5)
+    print('Result: {} Time for mod div summation: {} us'.format(modsum, tms))
+    t1 = time.time()
+    bitsum = sum([x for x in fibonacci(n) if x & 1 == 0])
+    t2 = time.time()
+    tms = round(1000000 * (t2 - t1), 5)
+    print('Result: {} Time for bitwise summation: {} us'.format(modsum, tms))
+
 
 if __name__ == '__main__':
     main()

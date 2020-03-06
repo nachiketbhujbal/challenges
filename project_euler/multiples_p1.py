@@ -1,47 +1,34 @@
 #!/usr/local/bin/python3
+# date: 2020-03-05
+# author: Nachiket Bhujbal
 '''
-date: 2020-03-05
-author: Nachiket Bhujbal
 Problem #1:
 
-If we list all the natural numbers below 10 that are multiples
-of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+    If we list all the natural numbers below 10 that are multiples
+    of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
-Find the sum of all the multiples of 3 or 5 below 1,000.
-
+    Find the sum of all the multiples of 3 or 5 below 1,000.
 '''
+# note: gentools in https://github.com/nachiketbhujbal/playground/py
 import sys
 import time
-
-def summate(N, k=1):
-    p = (N - 1) // k
-    result = ((k * p * (p + 1)) // 2)
-    return result
-
-def printout(O, N, t0, result):
-    t = round(1000000 * (time.time() - t0), 5)
-    answer = 'Order ({}) Solution for N = {} -> {}\n\t-- Solved in {} us'
-    print(answer.format(O, N, result, t))
+from gentools import custominput, customoutput, sum_k
 
 def iterative_solution(N):
     t0 = time.time()
     result = sum([x for x in range(N) if (x % 3 == 0) or (x % 5 == 0)])
-    printout('N', N, t0, result)
+    customoutput('Order (N)', N, result, t0)
 
-def order1solution(N):
+def order1_solution(N):
     t0 = time.time()
-    result = summate(N, k=3) + summate(N, k=5) - summate(N, k=15)
-    printout('1', N, t0, result)
+    result = sum_k(N, k=3) + sum_k(N, k=5) - sum_k(N, k=15)
+    customoutput('Order (1)', N, result, t0)
 
 def main():
-    if len(sys.argv) > 1:
-        n = int(sys.argv[1])
-    else:
-        n = int(input('Enter an number N = ').strip())
-
-    print('Finding sum of all multiples of 3 or 5 below N = {}...'.format(n))
-    iterative_solution(N=n)
-    order1solution(N=n)
+    N = custominput('upper bound')
+    print('Finding sum of all multiples of 3 or 5 below N = {}...'.format(N))
+    iterative_solution(N=N)
+    order1_solution(N=N)
 
 
 if __name__ == '__main__':

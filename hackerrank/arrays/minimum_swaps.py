@@ -11,7 +11,7 @@ def minimumSwaps(arr):
     ans = 0
     num = len(arr)
     pos = [*enumerate(arr)]
-    pos.sort(key = lambda it: it[1])
+    pos.sort(lambda x: x[1])
     vis = {k: False for k in range(num)}
     for i in range(num):
         if vis[i] or pos[i][0] == i:

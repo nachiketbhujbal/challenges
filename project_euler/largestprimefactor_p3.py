@@ -28,6 +28,7 @@ def prime_factors(n):
 def main():
     N = custominput('integer number')
     factors = prime_factors(N)
+    print(factors)
     lpf = max(factors)
     print('The largest prime factor of N = {} is {}'.format(N, lpf))
 

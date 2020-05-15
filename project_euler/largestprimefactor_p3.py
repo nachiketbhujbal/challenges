@@ -12,9 +12,7 @@ import math
 import time
 from gentools import custominput, customoutput
 
-# This solution is not efficient on numbers greater than 20 digits,
-# but does work, given enough time / resources
-# many assumptions were made to speed up performance for up to 20 digits
+# This solution is most efficient on numbers less than 20 digits,
 def prime_factors(n):
     if n < 2:
         print('BAD INPUT: Must enter an integer greater than 1. EXITING')

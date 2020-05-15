@@ -11,10 +11,19 @@ import sys
 import time
 from gentools import custominput, customoutput
 
-def prime_factors(N):
+def prime_factors(n):
+    factors = []
+    while n != 1:
+        for i in range(2, n + 1):
+            if n % i == 0: # this number divides w/o remainder
+                factors.append(i)
+                break
 
+        n = n // factors[-1]
+        if n == 0:
+            sys.exit(1)
 
-
+    return factors
 
 def main():
     N = custominput('integer number')

@@ -14,14 +14,12 @@ import sys
 import time
 from gentools import custominput, customoutput
 
+def smallest_modulo(n):
+
 
 def main():
-    N = int(input('Enter how many numbers to find a product of: N = '))
-    D = int(input('Enter how many digits each number has: D = ')) - 1
-    palin_prods = palindrome_product(N, D)
-    P = max(palin_prods)
-    printans = 'Largest palindrome product of {}, {} digit numbers is: {}'
-    print(printans.format(N, D, P))
+    N = custominput('integer number')
+    smallest_modulo(N)
 
 
 
